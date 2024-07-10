@@ -62,7 +62,7 @@ function Dashboard() {
                 </button>
                 <button
                   onClick={() => handleDelete(blog._id)}
-                  className="bg-slate-100 text-blue-600 w-full px-3 py-1 my-2"
+                  className="bg-slate-100 text-red-600 w-full px-3 py-1 my-2"
                 >
                   Delete
                 </button>

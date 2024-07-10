@@ -4,7 +4,7 @@
   "main": "index.js",
   "scripts": {
     "client:frontend": "cd frontend && npm install && npm run build",
-    "start": "npm run client:frontend && cd backend && npm install && npm run build"
+    "start": "cd ./frontend && npm install && npm run build && cd ../backend && npm install && npm run build"
   },
   "keywords": [],
   "author": "",

@@ -12,6 +12,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use("/api", router);
 
+console.log(path.join(process.cwd(), "../frontend/dist"));
+
 app.get("*", (req: Request, res: Response) => {
   res.sendFile(path.join(process.cwd(), "../frontend/dist/index.html"));
 });

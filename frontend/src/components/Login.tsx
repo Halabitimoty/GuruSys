@@ -13,17 +13,15 @@ function Login({ isMenuOpen, setIsMenuOpen }: MenuProps) {
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     if (username && password) {
-      login({ username, password });
-      if (data) {
-        setIsMenuOpen(!isMenuOpen);
-        navigate("/dashboard");
-      }
+      await login({ username, password });
+      setIsMenuOpen(!isMenuOpen);
+      navigate("/dashboard");
     }
   };
   const handleSignup = async (e: React.FormEvent) => {
     e.preventDefault();
     if (username && password) {
-      signup({ username, password });
+      await signup({ username, password });
       if (data) {
         setIsMenuOpen(!isMenuOpen);
         navigate("/dashboard");

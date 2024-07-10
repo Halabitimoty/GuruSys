@@ -10,7 +10,7 @@ function Home() {
         <img
           src={Blog_IMG}
           alt="Blog"
-          className="w-full h-[20rem] p-2 md:h-[40rem] md:p-5"
+          className="w-full h-[20rem] p-2 md:h-[50rem] md:p-5"
         />
       </section>
       <section>

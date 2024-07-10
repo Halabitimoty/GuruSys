@@ -14,7 +14,7 @@ function Login({ isMenuOpen, setIsMenuOpen }: MenuProps) {
     e.preventDefault();
     if (username && password) {
       login({ username, password });
-      setIsMenuOpen(!isMenuOpen);
+      // setIsMenuOpen(!isMenuOpen);
       if (data) navigate("/dashboard");
     }
   };
@@ -38,7 +38,7 @@ function Login({ isMenuOpen, setIsMenuOpen }: MenuProps) {
 
   return (
     <div className="absolute inset-0 flex justify-center items-center top-[15rem] md:top-[20rem]">
-      <div className="bg-white p-6 rounded shadow-md w-9/12 max-w-md">
+      <div className="bg-white p-6 rounded shadow-md w-11/12 max-w-lg">
         <h1 className="bg-slate-100 w-full flex justify-center items-center font-semibold p-2 rounded">
           Welcome to Login's Page
         </h1>

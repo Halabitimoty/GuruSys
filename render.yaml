@@ -3,8 +3,8 @@ services:
     name: GuruSys
     env: node
     plan: free
-    buildCommand: "npm install && npm run build"
-    startCommand: "npm start"
+    buildCommand: "cd server && npm install && npm run build"
+    startCommand: "cd server && npm start""
     envVars:
       - key: MONGO_URI
         value: mongodb+srv://Halabitimoty:s4CSoA29Bkt60af3@kodecamp.swoku4a.mongodb.net/GuruSys
@@ -12,4 +12,10 @@ services:
         value: your_jwt_secret
       - key: NODE_ENV
         value: production
-    staticPublishPath: frontend/build
+
+staticSites:
+  - name: my-frontend
+    plan: free
+    buildCommand: "cd client && npm install && npm run build"
+    publishPath: frontend/build
+

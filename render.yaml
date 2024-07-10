@@ -3,8 +3,8 @@ services:
     name: GuruSys
     env: node
     plan: free
-    buildCommand: "cd server && npm install && npm run build"
-    startCommand: "cd server && npm start""
+    buildCommand: "cd backend && npm install && npm run build"
+    startCommand: "cd backend && npm start""
     envVars:
       - key: MONGO_URI
         value: mongodb+srv://Halabitimoty:s4CSoA29Bkt60af3@kodecamp.swoku4a.mongodb.net/GuruSys
@@ -16,6 +16,6 @@ services:
 staticSites:
   - name: my-frontend
     plan: free
-    buildCommand: "cd client && npm install && npm run build"
+    buildCommand: "cd frontend && npm install && npm run build"
     publishPath: frontend/build
 

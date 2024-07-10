@@ -7,15 +7,13 @@ import { router } from "./app/routes";
 const app = express();
 
 app.use(morgan("dev"));
-app.use(express.static(path.join(process.cwd(), "../frontend/dist")));
+app.use(express.static(path.join(process.cwd(), "../../frontend/dist")));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use("/api", router);
 
-console.log(__dirname);
-
 app.get("*", (req: Request, res: Response) => {
-  res.sendFile(path.join(process.cwd(), "../frontend/dist/index.html"));
+  res.sendFile(path.join(process.cwd(), "../../frontend/dist/index.html"));
 });
 
 export { app };

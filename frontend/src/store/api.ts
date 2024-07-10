@@ -1,7 +1,8 @@
-export const fetchData = async () => {
-  const response = await fetch(
-    "https://run.mocky.io/v3/03ac56dc-6878-434f-9d59-5036b4d15004"
-  );
-  const data = await response.json();
-  return data;
-};
+import axios from "axios";
+
+export const apiClient = axios.create({
+  baseURL: import.meta.env.REACT_APP_API_BASE_URL || "http://localhost:3000",
+  headers: {
+    "Content-Type": "application/json",
+  },
+});

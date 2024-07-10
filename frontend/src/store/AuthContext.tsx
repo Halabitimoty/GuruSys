@@ -1,5 +1,5 @@
 import React, { createContext, useState, ReactNode, useEffect } from "react";
-import axios from "axios";
+import { apiClient } from "./api";
 
 export const AuthContext = createContext<AuthContextType | undefined>(
   undefined
@@ -24,8 +24,8 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
   const login = async ({ username, password }: Login) => {
     try {
       setLoading(true);
-      const res = await axios.post(
-        "",
+      const res = await apiClient.post(
+        "/api/login",
         { username, password },
         { headers: { "Content-Type": "application/json" } }
       );
@@ -41,8 +41,8 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
   const signup = async ({ username, password }: Login) => {
     try {
       setLoading(true);
-      const res = await axios.post(
-        "",
+      const res = await apiClient.post(
+        "/api/signup",
         { username, password },
         { headers: { "Content-Type": "application/json" } }
       );

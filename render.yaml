@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: GuruSys
+    env: node
+    plan: free
+    buildCommand: "npm install && npm run build"
+    startCommand: "npm start"
+    envVars:
+      - key: MONGO_URI
+        value: mongodb+srv://Halabitimoty:s4CSoA29Bkt60af3@kodecamp.swoku4a.mongodb.net/GuruSys
+      - key: JWT_SECRET
+        value: your_jwt_secret
+      - key: NODE_ENV
+        value: production
+    staticPublishPath: frontend/build

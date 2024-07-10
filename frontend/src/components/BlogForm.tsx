@@ -109,7 +109,7 @@ function BlogForm() {
                 setToggleMode(true);
               }}
               type="submit"
-              className="block w-full p-3 mx-1 my-2 border border-gray-300 rounded-md bg-slate-100 text-black"
+              className="block w-full p-3 mx-1 my-2 border border-gray-300 rounded-md bg-green-100 text-black"
             >
               Create
             </button>
@@ -118,7 +118,7 @@ function BlogForm() {
                 setToggleMode(false);
               }}
               type="submit"
-              className="block w-full p-3 mx-1 my-2 border border-gray-300 rounded-md bg-slate-100 text-black"
+              className="block w-full p-3 mx-1 my-2 border border-gray-300 rounded-md bg-orange-100 text-black"
             >
               Update
             </button>

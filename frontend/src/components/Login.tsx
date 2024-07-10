@@ -87,14 +87,14 @@ function Login({ isMenuOpen, setIsMenuOpen }: MenuProps) {
             <button
               onClick={() => setIsLoginMode(true)}
               type="submit"
-              className="block w-full p-3 mx-1 my-2 border border-gray-300 rounded-md bg-slate-100 text-black"
+              className="block w-full p-3 mx-1 my-2 border border-gray-300 rounded-md bg-green-100 text-black"
             >
               Login
             </button>
             <button
               onClick={() => setIsLoginMode(false)}
               type="submit"
-              className="block w-full p-3 mx-1 my-2 border border-gray-300 rounded-md bg-slate-100 text-black"
+              className="block w-full p-3 mx-1 my-2 border border-gray-300 rounded-md bg-orange-100 text-black"
             >
               SignUp
             </button>

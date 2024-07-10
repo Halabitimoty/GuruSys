@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from "react";
 import useAuth from "../store/useAuth";
 
+import { ToastContainer, toast } from "react-toastify";
+
+import "react-toastify/dist/ReactToastify.css";
+
 function BlogForm() {
   const { createBlog, updateBlog, setLoading, dataToUpdate } = useAuth();
   const [title, setTitle] = useState(dataToUpdate?.data?.title || "");
@@ -23,6 +27,16 @@ function BlogForm() {
     setLoading(true);
     if (title && content && paragraph) {
       createBlog({ title, content, paragraph });
+      toast("🦄 Successfully Created!", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
       setLoading(false);
     }
   };
@@ -30,6 +44,16 @@ function BlogForm() {
     e.preventDefault();
     if (title && content && paragraph && dataToUpdate?.id) {
       updateBlog({ title, content, paragraph }, dataToUpdate.id);
+      toast("🦄 Successful Updated!", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
     }
   };
 
@@ -101,6 +125,18 @@ function BlogForm() {
           </div>
         </form>
       </div>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
     </div>
   );
 }

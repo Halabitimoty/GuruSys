@@ -73,7 +73,7 @@ function BlogForm() {
     }
   };
   return (
-    <div className="inset-0 flex justify-center items-center top-[15rem] md:top-[20rem]">
+    <div className="inset-0 flex justify-center  top-[15rem] md:top-[20rem]">
       <div className="bg-white p-6 rounded shadow-md w-full max-w-lg">
         <h1 className="bg-slate-100 w-full flex justify-center items-center font-semibold p-2 rounded">
           Keeping Blogging...

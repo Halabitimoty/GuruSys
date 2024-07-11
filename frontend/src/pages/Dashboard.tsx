@@ -32,7 +32,7 @@ function Dashboard() {
   return (
     <section className="">
       <h2 className="text-center text-lg py-4">Welcome to the Dashboard</h2>
-      <div className="flex flex-col justify-center items-center md:flex-row">
+      <div className="flex flex-col justify-center md:flex-row">
         <div className="w-full p-5 md:w-1/2">
           {loading ? (
             <div className="text-center">Loading...</div>
@@ -69,7 +69,7 @@ function Dashboard() {
             ))
           )}
         </div>
-        <div className="w-full md:w-1/2 h-full">
+        <div className="w-full h-[50%] md:w-1/2">
           <BlogForm />
         </div>
       </div>

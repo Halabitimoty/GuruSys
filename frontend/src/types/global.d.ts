@@ -3,8 +3,8 @@ interface AuthContextType {
   data: UserData[] | null;
   token: string | null;
   dataToUpdate: { data: Blog; id } | null;
-  login: ({ username, password }: Login) => void;
-  signup: ({ username, password }: Login) => void;
+  login: ({ username, password }: Login) => Promise<void>;
+  signup: ({ username, password }: Login) => Promise<void>;
   setLoading: (value: boolean) => void;
   createBlog: (blog: Blog) => void;
   updateBlog: (blog: Blog, id: string) => void;

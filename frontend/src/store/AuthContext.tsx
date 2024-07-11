@@ -22,7 +22,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
     setparseToken(settokenLocal);
   }, []);
 
-  const login = async ({ username, password }: Login) => {
+  const login = async ({ username, password }: Login): Promise<void> => {
     try {
       setLoading(true);
       const res = await apiClient.post(
@@ -40,7 +40,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
     }
   };
 
-  const signup = async ({ username, password }: Login) => {
+  const signup = async ({ username, password }: Login): Promise<void> => {
     try {
       setLoading(true);
       await apiClient.post(

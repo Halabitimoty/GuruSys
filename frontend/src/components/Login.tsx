@@ -17,7 +17,9 @@ function Login({ isMenuOpen, setIsMenuOpen }: MenuProps) {
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     if (username && password) {
-      await login({ username, password });
+      await login({ username, password }).then(() => {
+        setIsMenuOpen(!isMenuOpen);
+      });
       toast("🦄 Login Successful!", {
         position: "top-right",
         autoClose: 5000,
@@ -28,14 +30,26 @@ function Login({ isMenuOpen, setIsMenuOpen }: MenuProps) {
         progress: undefined,
         theme: "light",
       });
-      setIsMenuOpen(!isMenuOpen);
       navigate("/dashboard");
+    } else {
+      toast("🦄 Login UnSuccessful!", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
     }
   };
   const handleSignup = async (e: React.FormEvent) => {
     e.preventDefault();
     if (username && password) {
-      await signup({ username, password });
+      await signup({ username, password }).then(() => {
+        setIsMenuOpen(!isMenuOpen);
+      });
       toast("🦄 Sign UP Successful...Login!", {
         position: "top-right",
         autoClose: 5000,
@@ -47,9 +61,19 @@ function Login({ isMenuOpen, setIsMenuOpen }: MenuProps) {
         theme: "light",
       });
       if (data) {
-        setIsMenuOpen(!isMenuOpen);
         navigate("/dashboard");
       }
+    } else {
+      toast("🦄 Signup UnSuccessful!", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
     }
   };
 

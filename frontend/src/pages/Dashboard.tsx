@@ -3,9 +3,9 @@ import BlogForm from "../components/BlogForm";
 import useAuth from "../store/useAuth";
 
 function Dashboard() {
-  const { getBlogs, deleteBlog, datasToUpdate } = useAuth();
   const [blogs, setBlogs] = useState<IBlog[]>([]);
-  const [loading, setLoading] = useState(true);
+  const { getBlogs, deleteBlog, datasToUpdate, loading, setLoading } =
+    useAuth();
 
   const fetchBlogs = async () => {
     const blogs = await getBlogs();
@@ -17,10 +17,6 @@ function Dashboard() {
   useEffect(() => {
     fetchBlogs();
   }, []);
-
-  if (loading) {
-    return <div>Loading...</div>;
-  }
 
   const handleEdit = async (id: string) => {
     const data = blogs.filter((blog) => {
@@ -41,7 +37,9 @@ function Dashboard() {
       <h2 className="text-center text-lg py-4">Welcome to the Dashboard</h2>
       <div className="flex flex-col justify-center items-center md:flex-row">
         <div className="w-full p-5 md:w-1/2">
-          {blogs &&
+          {loading ? (
+            <div className="text-center">Loading...</div>
+          ) : (
             blogs.map((blog) => (
               <div
                 key={blog._id}
@@ -69,7 +67,8 @@ function Dashboard() {
                   </button>
                 </div>
               </div>
-            ))}
+            ))
+          )}
         </div>
         <div className="w-full md:w-1/2">
           <BlogForm />

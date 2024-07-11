@@ -96,7 +96,7 @@ function Login({ isMenuOpen, setIsMenuOpen }: MenuProps) {
               type="submit"
               className="block w-full p-3 mx-1 my-2 border border-gray-300 rounded-md bg-orange-100 text-black"
             >
-              SignUp
+              click to SignUp
             </button>
           </div>
         </form>

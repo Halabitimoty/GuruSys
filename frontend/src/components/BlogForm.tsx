@@ -24,8 +24,8 @@ function BlogForm() {
 
   const handleCreate = async (e: React.FormEvent) => {
     e.preventDefault();
-    setLoading(true);
     if (title && content && paragraph) {
+      setLoading(true);
       createBlog({ title, content, paragraph });
       toast("🦄 Successfully Created!", {
         position: "top-right",
@@ -37,7 +37,7 @@ function BlogForm() {
         progress: undefined,
         theme: "light",
       });
-      setLoading(false);
+      // setLoading(false);
     }
   };
   const handleUpdate = async (e: React.FormEvent) => {

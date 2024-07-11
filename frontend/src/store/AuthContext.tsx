@@ -1,5 +1,6 @@
 import React, { createContext, useState, ReactNode, useEffect } from "react";
 import { apiClient } from "./api";
+import { settokenLocal } from "./utils";
 
 export const AuthContext = createContext<AuthContextType | undefined>(
   undefined
@@ -18,12 +19,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
   } | null>(null);
 
   useEffect(() => {
-    const GuruSysData = localStorage.getItem("GuruSys");
-
-    if (GuruSysData) {
-      setparseToken(JSON.parse(GuruSysData));
-      setLoading(false);
-    }
+    setparseToken(settokenLocal);
   }, []);
 
   const login = async ({ username, password }: Login) => {
@@ -35,9 +31,9 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
         { headers: { "Content-Type": "application/json" } }
       );
       setToken(res.data);
-      setLoading(false);
       localStorage.removeItem("GuruSys");
       localStorage.setItem("GuruSys", JSON.stringify(res.data));
+      setLoading(false);
     } catch (err) {
       console.error(err);
       setLoading(false);
@@ -47,14 +43,12 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
   const signup = async ({ username, password }: Login) => {
     try {
       setLoading(true);
-      const res = await apiClient.post(
+      await apiClient.post(
         "/api/signup",
         { username, password },
         { headers: { "Content-Type": "application/json" } }
       );
-      setToken(res.data);
       setLoading(false);
-      localStorage.setItem("GuruSys", JSON.stringify(res.data));
     } catch (err) {
       console.error(err);
       setLoading(false);
@@ -64,6 +58,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
   const logout = () => {
     setData([]);
     setToken("");
+    setparseToken(null);
     localStorage.removeItem("GuruSys");
   };
 
@@ -116,10 +111,11 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
     }
   };
   const getBlogs = async (): Promise<IBlog[] | undefined> => {
+    const tok = settokenLocal();
     try {
       setLoading(true);
       const res = await apiClient.get<IBlog[]>("/api/userblog", {
-        headers: { Authorization: `Bearer ${parsetoken?.token}` },
+        headers: { Authorization: `Bearer ${tok?.token}` },
       });
       setLoading(false);
       return res.data;

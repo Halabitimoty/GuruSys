@@ -1,4 +1,4 @@
-import React, { createContext, useState, ReactNode, useEffect } from "react";
+import React, { createContext, useState, ReactNode } from "react";
 import { apiClient } from "./api";
 import { settokenLocal } from "./utils";
 
@@ -11,16 +11,11 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
 }) => {
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState<UserData[] | null>(null);
-  const [parsetoken, setparseToken] = useState<{ token: string } | null>(null);
   const [token, setToken] = useState("");
   const [dataToUpdate, setDataToUpdate] = useState<{
     data: Blog;
     id: string;
   } | null>(null);
-
-  useEffect(() => {
-    setparseToken(settokenLocal);
-  }, []);
 
   const login = async ({ username, password }: Login): Promise<void> => {
     try {
@@ -31,7 +26,6 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
         { headers: { "Content-Type": "application/json" } }
       );
       setToken(res.data);
-      localStorage.removeItem("GuruSys");
       localStorage.setItem("GuruSys", JSON.stringify(res.data));
       setLoading(false);
     } catch (err) {
@@ -58,17 +52,17 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
   const logout = () => {
     setData([]);
     setToken("");
-    setparseToken(null);
     localStorage.removeItem("GuruSys");
   };
 
   const createBlog = async (blog: Blog) => {
+    const tok = settokenLocal();
     try {
       setLoading(true);
       const res = await apiClient.post("/api/createblog", blog, {
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${parsetoken?.token}`,
+          Authorization: `Bearer ${tok?.token}`,
         },
       });
       setLoading(false);
@@ -79,12 +73,13 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
     }
   };
   const updateBlog = async (blog: Blog, id: string) => {
+    const tok = settokenLocal();
     try {
       setLoading(true);
       const res = await apiClient.put(`/api/updateblog/${id}`, blog, {
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${parsetoken?.token}`,
+          Authorization: `Bearer ${tok?.token}`,
         },
       });
       setLoading(false);
@@ -95,12 +90,13 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
     }
   };
   const deleteBlog = async (id: string) => {
+    const tok = settokenLocal();
     try {
       setLoading(true);
       const res = await apiClient.delete(`/api/deleteblog/${id}`, {
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${parsetoken?.token}`,
+          Authorization: `Bearer ${tok?.token}`,
         },
       });
       setLoading(false);

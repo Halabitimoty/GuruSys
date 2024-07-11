@@ -53,13 +53,18 @@ function Dashboard() {
                 </div>
                 <div className="">
                   <button
-                    onClick={() => handleEdit(blog._id)}
+                    onClick={() => {
+                      handleEdit(blog._id);
+                    }}
                     className="bg-slate-100 text-blue-600 w-full px-3 py-1 my-2"
                   >
                     Edit
                   </button>
                   <button
-                    onClick={() => handleDelete(blog._id)}
+                    onClick={() => {
+                      handleDelete(blog._id);
+                      fetchBlogs();
+                    }}
                     className="bg-slate-100 text-red-600 w-full px-3 py-1 my-2"
                   >
                     Delete

@@ -1,6 +1,6 @@
 import HomeBlog from "../components/HomeBlog";
 
-import { Blog_IMG } from "../assets";
+import { BG_5 } from "../assets";
 import { homeBlog } from "../mocks/homeBlog";
 
 function Home() {
@@ -8,9 +8,9 @@ function Home() {
     <div className="">
       <section>
         <img
-          src={Blog_IMG}
+          src={BG_5}
           alt="Blog"
-          className="w-full h-[20rem] p-2 md:h-[50rem] md:p-5"
+          className="w-full h-[25rem] p-2 md:h-[60rem] md:p-5"
         />
       </section>
       <section>

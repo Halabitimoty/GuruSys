@@ -12,21 +12,21 @@ function Dashboard() {
       setBlogs(blogs);
     }
   };
+
   useEffect(() => {
     fetchBlogs();
   }, []);
 
-  const handleEdit = async (id: string) => {
-    const data = blogs.filter((blog) => {
-      if (blog._id === id) {
-        return blog;
-      }
-    });
-
-    datasToUpdate(data[0], id);
+  const handleEdit = (id: string) => {
+    const blog = blogs.find((blog) => blog._id === id);
+    if (blog) {
+      datasToUpdate(blog, id);
+    }
   };
+
   const handleDelete = async (id: string) => {
     await deleteBlog(id);
+    setBlogs((prevBlogs) => prevBlogs.filter((blog) => blog._id !== id));
   };
 
   return (
@@ -53,18 +53,13 @@ function Dashboard() {
                 </div>
                 <div className="">
                   <button
-                    onClick={() => {
-                      handleEdit(blog._id);
-                    }}
+                    onClick={() => handleEdit(blog._id)}
                     className="bg-slate-100 text-blue-600 w-full px-3 py-1 my-2"
                   >
                     Edit
                   </button>
                   <button
-                    onClick={() => {
-                      handleDelete(blog._id);
-                      fetchBlogs();
-                    }}
+                    onClick={() => handleDelete(blog._id)}
                     className="bg-slate-100 text-red-600 w-full px-3 py-1 my-2"
                   >
                     Delete
@@ -75,7 +70,7 @@ function Dashboard() {
           )}
         </div>
         <div className="w-full h-[50%] md:w-1/2">
-          <BlogForm />
+          <BlogForm fetchBlogs={fetchBlogs} />
         </div>
       </div>
     </section>

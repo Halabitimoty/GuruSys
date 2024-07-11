@@ -4,15 +4,13 @@ import useAuth from "../store/useAuth";
 
 function Dashboard() {
   const [blogs, setBlogs] = useState<IBlog[]>([]);
-  const { getBlogs, deleteBlog, datasToUpdate, loading, setLoading } =
-    useAuth();
+  const { getBlogs, deleteBlog, datasToUpdate, loading } = useAuth();
 
   const fetchBlogs = async () => {
     const blogs = await getBlogs();
     if (blogs) {
       setBlogs(blogs);
     }
-    setLoading(false);
   };
   useEffect(() => {
     fetchBlogs();
@@ -29,7 +27,6 @@ function Dashboard() {
   };
   const handleDelete = async (id: string) => {
     await deleteBlog(id);
-    fetchBlogs();
   };
 
   return (
@@ -39,6 +36,8 @@ function Dashboard() {
         <div className="w-full p-5 md:w-1/2">
           {loading ? (
             <div className="text-center">Loading...</div>
+          ) : blogs.length === 0 ? (
+            <div className="text-center font-bold">Start blogging...</div>
           ) : (
             blogs.map((blog) => (
               <div
@@ -70,7 +69,7 @@ function Dashboard() {
             ))
           )}
         </div>
-        <div className="w-full md:w-1/2">
+        <div className="w-full md:w-1/2 h-full">
           <BlogForm />
         </div>
       </div>

@@ -4,7 +4,7 @@ import useAuth from "../store/useAuth";
 
 function Dashboard() {
   const [blogs, setBlogs] = useState<IBlog[]>([]);
-  const { getBlogs, deleteBlog, datasToUpdate, loading, logout } = useAuth();
+  const { getBlogs, deleteBlog, datasToUpdate, loading } = useAuth();
 
   const fetchBlogs = async () => {
     const blogs = await getBlogs();
@@ -32,12 +32,6 @@ function Dashboard() {
   return (
     <section className="relative">
       <h2 className="text-center text-lg py-4">Welcome to the Dashboard</h2>
-      <button
-        onClick={() => logout()}
-        className="absolute right-[1rem] top-4 border-2 px-3 py-1 rounded-lg md:px-5 md:py-2 md:right-[5rem] md:top-4"
-      >
-        Logout
-      </button>
       <div className="flex flex-col justify-center md:flex-row">
         <div className="w-full p-5 md:w-1/2">
           {loading ? (

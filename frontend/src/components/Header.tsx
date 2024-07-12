@@ -2,8 +2,10 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 
 import Login from "./Login";
+import useAuth from "../store/useAuth";
 
 function Header() {
+  const { token, logout } = useAuth();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const handleMenu = () => {
@@ -24,12 +26,21 @@ function Header() {
           </li>
         </ul>
       </nav>
-      <button
-        onClick={handleMenu}
-        className="border-2 px-4 py-2 rounded-lg md:px-5 md:py-2"
-      >
-        Login
-      </button>
+      {token ? (
+        <button
+          onClick={() => logout()}
+          className="border-2 px-4 py-2 rounded-lg md:px-5 md:py-2"
+        >
+          Logout
+        </button>
+      ) : (
+        <button
+          onClick={handleMenu}
+          className="border-2 px-4 py-2 rounded-lg md:px-5 md:py-2"
+        >
+          Login
+        </button>
+      )}
       {isMenuOpen && (
         <Login isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
       )}
